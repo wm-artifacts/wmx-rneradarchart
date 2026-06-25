@@ -1,0 +1,216 @@
+{
+  "name": "RNERadarChart",
+  "version": "1.0.1",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wavemaker/wm-react-native-echarts"
+  },
+  "homepage": "https://wavemaker.github.io/wm-react-native-echarts/?path=/story/charts-radar--default",
+  "displayName": "Radar Chart",
+  "description": "Unified radar chart component supporting all variations: basic, multiple, grid-circle, grid-filled, dots, lines-only, and custom-label configurations",
+  "iconUrl": "icon.svg",
+  "dependencies": {
+    "@wavemaker/react-native-echarts": "1.0.1",
+    "@shopify/react-native-skia": "2.6.2"
+  },
+  "keywords": [
+    "radar",
+    "chart",
+    "unified",
+    "master",
+    "spider",
+    "multi-series",
+    "grid",
+    "dots",
+    "visualization",
+    "data-analysis",
+    "chart/radar"
+  ],
+  "props": {
+    "indicators": {
+      "name": "indicators",
+      "displayName": "Indicators",
+      "description": "Indicator definitions: dimension names and optional max per axis. Length must match each series value array. Example: [{name: 'Sales', max: 6500}, {name: 'Marketing', max: 25000}]",
+      "type": "object",
+      "isList": true,
+      "isRequired": true
+    },
+    "data": {
+      "name": "data",
+      "displayName": "Data",
+      "description": "Chart data. Single series (number[]) or multiple named series (Array<{name?: string, value: number[]}>). Example: [4200, 3000, 20000] or [{name: 'Series A', value: [4200, 3000, 20000]}]",
+      "type": "object",
+      "isList": true,
+      "isRequired": true
+    },
+    "symbol": {
+      "name": "symbol",
+      "displayName": "Symbol",
+      "description": "Symbol type for data points. Set to 'none' to hide. Options: 'none', 'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow'. Default: 'none'",
+      "type": "string",
+      "widget": "list",
+      "options": [
+        "none",
+        "circle",
+        "rect",
+        "roundRect",
+        "triangle",
+        "diamond",
+        "pin",
+        "arrow"
+      ],
+      "defaultValue": "none",
+      "isList": false,
+      "isRequired": false
+    },
+    "symbolSize": {
+      "name": "symbolSize",
+      "displayName": "Symbol Size",
+      "description": "Size of the symbol. Number, [width, height], or function. Used when symbol is not 'none'.",
+      "type": "number",
+      "isList": false,
+      "isRequired": false
+    },
+    "showLegend": {
+      "name": "showLegend",
+      "displayName": "Show Legend",
+      "description": "Whether to display a legend for named series. Default: true",
+      "type": "boolean",
+      "isList": false,
+      "defaultValue": true,
+      "isRequired": false
+    },
+    "legendPosition": {
+      "name": "legendPosition",
+      "displayName": "Legend Position",
+      "description": "Placement of the legend: 'top' | 'bottom' | 'left' | 'right'. Top and bottom use a horizontal legend with wrapping; left and right use a vertical legend. Default: 'bottom'",
+      "type": "string",
+      "widget": "list",
+      "options": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+      ],
+      "defaultValue": "bottom",
+      "isList": false,
+      "isRequired": false
+    },
+    "showIndicatorLabels": {
+      "name": "showIndicatorLabels",
+      "displayName": "Show Indicator Labels",
+      "description": "Whether to show indicator (axis) labels. Default: true",
+      "type": "boolean",
+      "isList": false,
+      "defaultValue": true,
+      "isRequired": false
+    },
+    "showSplitLine": {
+      "name": "showSplitLine",
+      "displayName": "Show Split Line",
+      "description": "Whether to show split lines (grid) for the radar. Default: true",
+      "type": "boolean",
+      "isList": false,
+      "defaultValue": true,
+      "isRequired": false
+    },
+    "showAxisLine": {
+      "name": "showAxisLine",
+      "displayName": "Show Axis Line",
+      "description": "Whether to show axis line for each indicator. Default: true",
+      "type": "boolean",
+      "isList": false,
+      "defaultValue": true,
+      "isRequired": false
+    },
+    "tooltip": {
+      "name": "tooltip",
+      "displayName": "Tooltip",
+      "description": "Built-in React Native series tooltip overlay when renderTooltip is omitted: card (default), compact, kpi, striped, or none to hide the overlay.",
+      "type": "string",
+      "widget": "list",
+      "options": [
+        "card",
+        "compact",
+        "kpi",
+        "striped",
+        "none"
+      ],
+      "defaultValue": "card",
+      "isList": false,
+      "isRequired": false
+    },
+    "renderTooltip": {
+      "name": "renderTooltip",
+      "displayName": "Render Tooltip",
+      "description": "Optional (params) => ReactNode for the RN tooltip body at the pointer. When set, replaces the layout chosen by tooltip. Params: series name, color, dimensionValues (indicatorName and value per axis), pointerX and pointerY.",
+      "type": "function",
+      "isList": false,
+      "isRequired": false,
+      "show": false
+    },
+    "width": {
+      "name": "width",
+      "displayName": "Width",
+      "description": "Width of the chart in pixels.",
+      "type": "string",
+      "pattern": "^\\d+(%|px|pt)?$",
+      "defaultValue": "100%",
+      "isList": false,
+      "isRequired": false
+    },
+    "height": {
+      "name": "height",
+      "displayName": "Height",
+      "description": "Height of the chart in pixels.",
+      "type": "string",
+      "pattern": "^\\d+(%|px|pt)?$",
+      "defaultValue": "300",
+      "isList": false,
+      "isRequired": false
+    },
+    "theme": {
+      "name": "theme",
+      "displayName": "Theme",
+      "description": "Partial theme override. Merged with default theme from ChartThemeContext.",
+      "type": "object",
+      "isList": false,
+      "isRequired": false,
+      "show": false
+    },
+    "colors": {
+      "name": "colors",
+      "displayName": "Colors",
+      "description": "Colors for the chart series. Overrides theme colors. Example: ['#3b82f6', '#10b981', '#f59e0b']",
+      "type": "string",
+      "isList": true,
+      "isRequired": false
+    }
+  },
+  "events": {
+    "onSelect": {
+      "name": "onSelect",
+      "displayName": "On Select",
+      "description": "Callback when the user selects (taps/clicks) a data point on a series (when supported).",
+      "type": "function",
+      "params": [
+        "event"
+      ],
+      "isList": false,
+      "isRequired": false
+    }
+  },
+  "group": "chart/radar",
+  "marketplace": {
+    "carouselImages": [
+      "/assets/images/default.png",
+      "/assets/images/multiple.png",
+      "/assets/images/with-symbol.png"
+    ],
+    "thumbnailImage": "/assets/images/thumbnail.png",
+    "icon": "icon.svg",
+    "previewUrl": "https://wavemaker.github.io/wm-react-native-echarts/?path=/story/charts-radar--default"
+  },
+  "webSupport": true
+}
